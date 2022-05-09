@@ -1,0 +1,91 @@
+notables
+
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.5)           )
+plotfir.plot_fir(window= ('tukey',0.3)                        )
+
+
+all
+
+plotfir.plot_fir(window= ('barthann')                         )
+plotfir.plot_fir(window= ('bartlett')                         )
+plotfir.plot_fir(window= ('blackman')                         )
+plotfir.plot_fir(window= ('blackmanharris')                   )
+plotfir.plot_fir(window= ('bohman')                           )
+plotfir.plot_fir(window= ('boxcar')                           )
+plotfir.plot_fir(window= ('chebwin',45)                       )
+plotfir.plot_fir(window= ('chebwin',80)                       )
+plotfir.plot_fir(window= ('dpss',0.2)                         )
+plotfir.plot_fir(window= ('dpss',0.02)                        )
+plotfir.plot_fir(window= ('exponential', None, 200)           )
+plotfir.plot_fir(window= ('flattop')                          )
+plotfir.plot_fir(window= ('gaussian',0.1*731)                 )
+plotfir.plot_fir(window= ('gaussian',0.3*731)                 )
+plotfir.plot_fir(window= ('gaussian',1.0*731)                 )
+plotfir.plot_fir(window= ('hamming')                          )
+plotfir.plot_fir(window= ('hann')                             )
+plotfir.plot_fir(window= ('kaiser',2)                         )
+plotfir.plot_fir(window= ('kaiser',14)                        )
+plotfir.plot_fir(window= ('nuttall')                          )
+plotfir.plot_fir(window= ('parzen')                           )
+plotfir.plot_fir(window= ('slepian',0.02)                     )
+plotfir.plot_fir(window= ('slepian',0.01)                     )
+plotfir.plot_fir(window= ('triang')                           )
+plotfir.plot_fir(window= ('tukey',0.01)                       )
+plotfir.plot_fir(window= ('tukey',0.5)                        )
+plotfir.plot_fir(window= ('tukey',1)                          )
+plotfir.plot_fir(window= ('invendelirium1', 0.5, 1)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.5, 1, 4)     )
+
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.3)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.4)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.5)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.6)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.7)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.8)           )
+plotfir.plot_fir(window= ('tukey',0.5)                        )
+
+
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.5)           )
+plotfir.plot_fir(window= ('tukey',0.2)                        )
+plotfir.plot_fir(window= ('tukey',0.3)                        )
+plotfir.plot_fir(window= ('tukey',0.4)                        )
+plotfir.plot_fir(window= ('tukey',0.5)                        )
+plotfir.plot_fir(window= ('tukey',0.6)                        )
+plotfir.plot_fir(window= ('tukey',0.7)                        )
+
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.5)           )
+plotfir.plot_fir(window= ('tukey',0.3)                        )
+
+plotfir.plot_fir(window= ('invendelirium1', 0.1, 0.5)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.5)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.3, 0.5)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.4, 0.5)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.5, 0.5)           )
+
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.3)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.4)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.5)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.6)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.7)           )
+
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.5, 0)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.5, 1)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.5, 2)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.5, 3)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.5, 4)           )
+
+
+plotfir.plot_fir(window= ('invendelirium1dip', 0.1, 0.5, 2)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.5, 2)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.3, 0.5, 2)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.4, 0.5, 2)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.5, 0.5, 2)           )
+
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.1, 4)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.3, 4)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.5, 4)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.7, 4)           )
+plotfir.plot_fir(window= ('invendelirium1dip', 0.2, 0.9, 4)           )
+
+plotfir.plot_fir(window= ('invendelirium1dip', 0.4, 0.5, 2)           )
+plotfir.plot_fir(window= ('invendelirium1', 0.2, 0.5)           )
