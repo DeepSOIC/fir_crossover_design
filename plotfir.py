@@ -3,7 +3,7 @@ ax_wf = None
 ax_sp = None
 
 
-def fig(split = False):
+def fig(split = False, label = None):
     """fig(split = False): creates new figures to plot onto"""
     global figures, ax_wf, ax_sp
 
@@ -23,7 +23,7 @@ def fig(split = False):
         )   
         figures = [figure1, figure2]
     else:
-        figure = plt.figure(figsize = (15, 5))
+        figure = plt.figure(figsize = (15, 5), num= label)
         ax_wf = figure.add_subplot(
             1,3,1
         )
@@ -45,7 +45,7 @@ def fig(split = False):
     for fig in figures:
         fig.canvas.mpl_connect('close_event', on_close)
 
-def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), fs = 44100, pass_zero = 'lowpass', label = 'main'):
+def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), fs = 44100, pass_zero = 'lowpass', label = None):
     global figures, ax_wf, ax_sp
 
     import scipy.signal
@@ -82,7 +82,7 @@ def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), fs = 44100, p
 
 
     if figures is None:
-        fig()
+        fig(label= str(window) if label is None else label)
     
     ax_wf.plot(
         fir/np.abs(fir).max(), 
@@ -114,6 +114,13 @@ def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), fs = 44100, p
 
     import matplotlib.pyplot as plt
     tight_layout()
+    
+def save():
+    figures[0].savefig(r'S:\tmp\{ft}.png'.format(ft=figures[0].get_label()))
+    figures[0].clear()
+    import matplotlib.pyplot as plt
+    plt.close()
+    
 
 
 def on_close(event):
