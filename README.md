@@ -1,6 +1,8 @@
 # fir_crossover_design
 my fir filter crossover design tools and experiments (mainly with scipy)
 
+## story
+
 I wanted to try out a linear phase crossover for my dsp for my audio system. 
 So i dived into fir filter design a little bit, and generated a whole ton of graphs.
 Might as well share it with the world, so here it comes.
@@ -29,6 +31,8 @@ The window method lets me choose a window to tame side-lobes (spectral leakage) 
 There is a ton of windows to choose from, and i had a hard time finding out how each one will affect the crossover, so i did it the easy way - computed them all, and plotted their spectra.
 All of them are in 'gallery' directory of the repo, here come a few of them.
 
+## filter design gallery
+
 First is "boxcar", which is no window at all - steepest crossover but high leakage (though, it can get even steeper!)
 
 ![boxcar aka no window at all fir crossover](/gallery/731pts%20250hz/boxcar.png)
@@ -47,7 +51,7 @@ Then i tried inventing a window function. After a bit of optimisation, this prod
 
 ![invendelirium1 window crossover vs tukey 0.3](/gallery/731pts%20250hz/invendelirium1_0.2_0.5_vs_tukey_0.3.png)
 
-This will be the standard i'll compare other methods with.
+This will be the standard i'll compare the other methods to.
 
 Next, i tried `remez`, which [is regarded as "probably the most widely used FIR filter design method" by dspguru.com](https://dspguru.com/dsp/faqs/fir/design/)
 
@@ -94,7 +98,7 @@ This displays a plot (waveform and spectrum) of a fir filter generated with the 
 
 `plotfir.plot_remez(t_width = 70)`, `plotfir.plot_firls(t_width = 30)` - same, but the other two methods.
 
-`plotfir.fig()` - start a new figure. You can also just close the old figure if you don't need it anymore.
+`plotfir.fig()` - start a new figure. You can instead just close the old figure if you don't need it anymore.
 
 `plotfir.plot_fir(fir, win, label):` - plot a fir filter that you designed somehow. (`fir` must be a numpy.array of the filter taps; `win` is the window function which will be plotted to the waveform plot, use `None` if you don't want it; `label` is for legend)
 
@@ -109,18 +113,18 @@ To save your fir filter as a text file, you may find this quick snippet helpful:
 ```
 import scipy.signal
 
-fir = scipy.signal.firwin(
-    731, # fir length, determines xover transition width
-    250.0, # xover frequency
-    window=('tukey',0.3), 
-    fs= 44100, # sample rate
-    pass_zero= 'lowpass'
+fir = scipy.signal.firls(
+    731,                  # filter length
+    [0, 250 - 30/2,       # 250 is xover frequency, 30 is xover width
+    250 + 30/2, 44100/2],
+    [1.0, 1.0, 0.0, 0.0],
+    fs=44100              # sample rate
 )
 
 import numpy
 
 numpy.savetxt(
     r'C:\path\to\somewhere\fir.txt',  
-    fir[1:-1] # drop first and last value, they are zeros with tukey window
+    fir
 )
 ```
