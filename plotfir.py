@@ -63,6 +63,18 @@ def plot_remez(n_pts = 731, f_x = 250.0, t_width = 30):
     
     plot_fir(fir, None, 'remez {t_width}'.format(t_width = t_width))
 
+def plot_firls(n_pts = 731, f_x = 250.0, t_width = 30):
+    import scipy.signal
+    fir = scipy.signal.firls(
+        731, 
+        [0, f_x - t_width/2, 
+        f_x + t_width/2, fs/2],
+        [1.0, 1.0,0.0, 0.0],
+        fs=fs
+    )
+    
+    plot_fir(fir, None, 'ls {t_width}'.format(t_width = t_width))
+
 def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), pass_zero = 'lowpass', label = None):
     global figures, ax_wf, ax_sp
 
