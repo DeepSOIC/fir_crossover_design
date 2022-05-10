@@ -13,8 +13,8 @@ Yet, the longer the filter, the sharper the crossover, which sound like a good t
 So, i want a sharpest crossover for a given length of the filter.
 
 The concept of the crossover is very simple. I pass the input audio through a low-pass filter, and that goes to the woofer (with some extra correction after).
-Then i delay the input signal by the delay of LPF, and subtract out the LPF-ed signal.
-This gives the high-pass complement of the filter, that sum together perfectly (a subtractive crossover).
+Then i delay the input signal by the delay of LPF (which is half the filter length), and subtract out the LPF-ed signal.
+This gives the high-pass complement of the filter, that sums together perfectly with the LPF-ed signal to reconstruct the original (a "subtractive crossover" - that summation should be happening in the air).
 The best part about it is that i can handle the full stereo crossover with just one fir LPF (with a slight problem that bass in the side channel will get through into the mid drivers, which isn't a problem for me right now, but can be filtered out with an iir filter if really necessary).
 
 I figured out that my dsp program leaves about 750-ish taps for fir filtering. So my design goal was 250 Hz low-pass fir filter with 731 taps.
@@ -25,8 +25,8 @@ I found three methods of constructing the fir in scipy.
 * `remez`, which seems to actually be [Parks-McClellan filter design algorithm](https://en.wikipedia.org/wiki/Parks%E2%80%93McClellan_filter_design_algorithm)
 * least-squares algorithm `firls` 
 
-The window method lets me choose a window to tame side-lobes caused by cropping the sinc function by the filter length.
-There is a ton of filters to choose from, and i had a hard time finding out how each one will affect the crossover, so i did it the easy way - computed them all, and plotted their spectra.
+The window method lets me choose a window to tame side-lobes (spectral leakage) caused by the cropping of the sinc function by the filter length.
+There is a ton of windows to choose from, and i had a hard time finding out how each one will affect the crossover, so i did it the easy way - computed them all, and plotted their spectra.
 All of them are in 'gallery' directory of the repo, here come a few of them.
 
 First is "boxcar", which is no window at all - steepest crossover but high leakage (though, it can get even steeper!)
@@ -74,3 +74,54 @@ fir = scipy.signal.firls(
 )
 ```
 
+## replicating my results / designing your filter 
+
+So, you want a fir crossover, but you have a different priorities and a different crossover frequency? 
+Well, here's a quick guide on how to get these nice graphs, and this is what this repo is all about.
+
+0. you'll need scipy and matplotlib installed
+
+1. place all the .py files of the repo somewhere they can be directly imported from. Except maybe InitGui.py and window-list.py
+
+2. enter the console, and interactively run some of these commands:
+
+`import plotfir` - first and foremost
+
+`plotfir.fs = 48000` - if you need a different sample rate
+
+`plotfir.plot_firwin(window= ('barthann')`
+This displays a plot (waveform and spectrum) of a fir filter generated with the window method. Further calls get overlaid onto what's already on screen.
+
+`plotfir.plot_remez(t_width = 70)`, `plotfir.plot_firls(t_width = 30)`
+- same, but the other two methods.
+
+`plotfir.fig()` - start a new figure. You can also just close the old figure if you don't need it anymore.
+
+`plotfir.plot_fir(fir, win, label):` - plot a fir filter that you designed somehow. (`fir` must be a numpy.array of the filter taps)
+
+window-list.py contains a bunch of these commands that i've used to generate the figures you see above.
+
+InitGui.py is related to how i use this repo - i install it as a freecad addon (convenient, because FreeCAD already packs in matplotlib and scipy).
+
+Be prepared to manually edit plotfir.py to your needs, because it was written as a tinker tool, and is not general-purpose at all.
+
+To save your fir filter as a text file, you may find this quick snippet helpful:
+
+```
+import scipy.signal
+
+fir = scipy.signal.firwin(
+    731, # fir length, determines xover transition width
+    250.0, # xover frequency
+    window=('tukey',0.3), 
+    fs= 44100, # sample rate
+    pass_zero= 'lowpass'
+)
+
+import numpy
+
+numpy.savetxt(
+    r'C:\path\to\somewhere\fir.txt',  
+    fir[1:-1] # drop first and last value, they are zeros with tukey window
+)
+```
