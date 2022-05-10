@@ -3,7 +3,7 @@ notables
 plotfir.plot_firwin(window= ('invendelirium1', 0.2, 0.5)           )
 plotfir.plot_firwin(window= ('tukey',0.3)                        )
 plotfir.plot_remez(t_width = 70) # width like firwin('invendelirium1', 0.2, 0.5)
-
+plotfir.plot_firls(t_width = 30) # width like firwin('invendelirium1', 0.2, 0.5)
 
 all
 
