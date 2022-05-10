@@ -89,7 +89,7 @@ Well, here's a quick guide on how to get these nice graphs, and this is what thi
 
 `plotfir.fs = 48000` - if you need a different sample rate
 
-`plotfir.plot_firwin(window= ('barthann')`
+`plotfir.plot_firwin(window= ('barthann'))`
 This displays a plot (waveform and spectrum) of a fir filter generated with the window method. Further calls get overlaid onto what's already on screen.
 
 `plotfir.plot_remez(t_width = 70)`, `plotfir.plot_firls(t_width = 30)`
