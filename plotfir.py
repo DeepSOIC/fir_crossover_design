@@ -1,14 +1,17 @@
 figures = None
 ax_wf = None
 ax_sp = None
-
+conns = [] #connections for close events
 
 def fig(split = False, label = None):
     """fig(split = False): creates new figures to plot onto"""
-    global figures, ax_wf, ax_sp
+    global figures, ax_wf, ax_sp, conns
 
     import matplotlib.pyplot as plt
     plt.ion()
+    for conn, fig in conns:
+        fig.canvas.mpl_disconnect(conn)
+    conns = []
     
     if split:
         figure1 = plt.figure()
@@ -43,7 +46,9 @@ def fig(split = False, label = None):
     ax_sp.grid(True, which= 'minor', color='#ffff00ff', linewidth=0.6)
     
     for fig in figures:
-        fig.canvas.mpl_connect('close_event', on_close)
+        conn = fig.canvas.mpl_connect('close_event', on_close)
+        conns.append((conn, fig))
+        
 
 def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), fs = 44100, pass_zero = 'lowpass', label = None):
     global figures, ax_wf, ax_sp
