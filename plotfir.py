@@ -2,6 +2,7 @@ figures = None
 ax_wf = None
 ax_sp = None
 conns = [] #connections for close events
+fs = 44100
 
 def fig(split = False, label = None):
     """fig(split = False): creates new figures to plot onto"""
@@ -50,7 +51,7 @@ def fig(split = False, label = None):
         conns.append((conn, fig))
         
 
-def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), fs = 44100, pass_zero = 'lowpass', label = None):
+def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), pass_zero = 'lowpass', label = None):
     global figures, ax_wf, ax_sp
 
     import scipy.signal
@@ -104,8 +105,8 @@ def plot_firwin(n_pts = 731, f_x = 250.0, window = ('tukey', 0.5), fs = 44100, p
     inversefir[int((n_pts-1)/2)] -= 1.0
     
     import audioSpectralTools as AST
-    frequencies, spec = AST.audio_fft(AST.pad(fir, 65536), normalize= 'filter')
-    frequencies, invspec = AST.audio_fft(AST.pad(inversefir, 65536), normalize= 'filter')
+    frequencies, spec = AST.audio_fft(AST.pad(fir, 65536), normalize= 'filter', fs= fs)
+    frequencies, invspec = AST.audio_fft(AST.pad(inversefir, 65536), normalize= 'filter', fs= fs)
     
     #import uuid
     #id = uuid.uuid4()
