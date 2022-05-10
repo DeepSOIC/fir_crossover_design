@@ -92,8 +92,7 @@ Well, here's a quick guide on how to get these nice graphs, and this is what thi
 `plotfir.plot_firwin(window= ('barthann'))`
 This displays a plot (waveform and spectrum) of a fir filter generated with the window method. Further calls get overlaid onto what's already on screen.
 
-`plotfir.plot_remez(t_width = 70)`, `plotfir.plot_firls(t_width = 30)`
-- same, but the other two methods.
+`plotfir.plot_remez(t_width = 70)`, `plotfir.plot_firls(t_width = 30)` - same, but the other two methods.
 
 `plotfir.fig()` - start a new figure. You can also just close the old figure if you don't need it anymore.
 
