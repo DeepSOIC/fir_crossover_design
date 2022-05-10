@@ -96,7 +96,7 @@ This displays a plot (waveform and spectrum) of a fir filter generated with the 
 
 `plotfir.fig()` - start a new figure. You can also just close the old figure if you don't need it anymore.
 
-`plotfir.plot_fir(fir, win, label):` - plot a fir filter that you designed somehow. (`fir` must be a numpy.array of the filter taps)
+`plotfir.plot_fir(fir, win, label):` - plot a fir filter that you designed somehow. (`fir` must be a numpy.array of the filter taps; `win` is the window function which will be plotted to the waveform plot, use `None` if you don't want it; `label` is for legend)
 
 window-list.py contains a bunch of these commands that i've used to generate the figures you see above.
 
